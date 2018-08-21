@@ -9,7 +9,9 @@ echo   -Converting system-ext4 image into system.new.dat...
 if not exist temp mkdir temp >nul
 bins\ext2simg -v %image% temp\system.img >nul
 TIMEOUT /T 3 /nobreak >nul
-bins\simg2sdat temp\system.img %~dp0 >nul
+bins\simg2sdat temp\system.img %~dsp0 >nul
+::if exist temp\system.new.dat move /y temp\system.new.dat %~dsp0 >nul
+::if exist temp\system.transfer.list move /y temp\system.transfer.list %~dsp0 >nul
 if exist temp rmdir /q /s temp >nul
 ::if exist %image% del %image%
 echo   -Done
